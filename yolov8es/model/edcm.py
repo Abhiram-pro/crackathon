@@ -36,6 +36,11 @@ class EDCM(nn.Module):
         self.groups = g
         self.out_channels = c2
         self.in_channels = c1
+        
+        # Ultralytics compatibility attributes
+        self.f = -1  # From previous layer
+        self.i = -1  # Layer index (will be set by model)
+        self.type = 'EDCM'
 
         # 4 parallel dynamic convolution kernels (ODConv)
         self.weight = nn.Parameter(

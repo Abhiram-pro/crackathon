@@ -124,6 +124,11 @@ class SGAM(nn.Module):
         elif isinstance(c2, int) and c2 > c1:
             c2 = c1
         
+        # Ultralytics compatibility attributes
+        self.f = -1  # From previous layer
+        self.i = -1  # Layer index (will be set by model)
+        self.type = 'SGAM'
+        
         self.se = SE(c1)
         self.gam = GAM(c1)
         self.ca = CoordinateAttention(c1)
