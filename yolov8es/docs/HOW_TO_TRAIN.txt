@@ -1,0 +1,88 @@
+================================================================================
+HOW TO TRAIN YOLOv8-ES
+================================================================================
+
+STEP 1: Prepare Your Dataset
+-----------------------------
+Put your images and labels in YOLO format:
+
+  datasets/rdd2022/
+  ├── images/
+  │   ├── train/  (your training images)
+  │   └── val/    (your validation images)
+  └── labels/
+      ├── train/  (your training labels .txt files)
+      └── val/    (your validation labels .txt files)
+
+Each label file: class x_center y_center width height (normalized 0-1)
+
+
+STEP 2: Update Dataset Path
+----------------------------
+Edit rdd2022.yaml and change this line:
+
+  path: /path/to/your/datasets/rdd2022  <-- PUT YOUR PATH HERE
+
+
+STEP 3: Test Everything Works
+------------------------------
+Run:
+  python test_training_ready.py
+
+You should see all ✓ checks pass.
+
+
+STEP 4: Start Training
+-----------------------
+
+OPTION A - Simple baseline (recommended first):
+  python simple_train.py --data rdd2022.yaml --epochs 100 --batch 16
+
+OPTION B - Full YOLOv8-ES with EDCM and SGAM:
+  python train_yolov8es.py --data rdd2022.yaml --epochs 100 --batch 16
+
+
+THAT'S IT!
+----------
+Training will start and save results to:
+  runs/train/yolov8n/  or  runs/train/yolov8es/
+
+Best weights will be at:
+  runs/train/yolov8n/weights/best.pt
+
+
+COMMON OPTIONS
+--------------
+--epochs 100      Number of training epochs
+--batch 16        Batch size (reduce if out of memory)
+--device 0        Use GPU 0 (or cpu for CPU)
+--imgsz 640       Image size
+
+
+AFTER TRAINING
+--------------
+Validate:
+  python predict.py val --weights runs/train/yolov8n/weights/best.pt --data rdd2022.yaml
+
+Predict on image:
+  python predict.py predict --weights runs/train/yolov8n/weights/best.pt --source image.jpg
+
+
+TROUBLESHOOTING
+---------------
+Out of memory?
+  → Reduce batch size: --batch 8
+
+No GPU?
+  → Will use CPU automatically (slower)
+
+Dataset not found?
+  → Check path in rdd2022.yaml
+
+Need help?
+  → Read START_HERE.md or TRAINING_GUIDE.md
+
+
+================================================================================
+Everything is ready. Just update rdd2022.yaml and run simple_train.py!
+================================================================================

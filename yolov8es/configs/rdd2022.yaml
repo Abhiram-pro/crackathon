@@ -1,0 +1,21 @@
+# RDD2022 Dataset Configuration for YOLOv8-ES
+# Road Damage Detection Dataset 2022
+
+# Dataset path (update with your actual path)
+path: ../datasets/rdd2022  # Root directory
+train: images/train  # Train images (relative to 'path')
+val: images/val  # Val images (relative to 'path')
+test: images/test  # Test images (optional)
+
+# Classes
+nc: 4  # Number of classes
+names:
+  0: D00  # Longitudinal crack
+  1: D10  # Transverse crack
+  2: D20  # Alligator crack
+  3: D40  # Pothole
+
+# Dataset info
+# RDD2022 contains road damage images from multiple countries
+# Images are annotated with bounding boxes for 4 crack types
+# Paper uses this dataset for evaluation

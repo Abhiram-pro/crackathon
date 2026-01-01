@@ -1,0 +1,87 @@
+================================================================================
+TRAIN YOLOv8-ES ON KAGGLE - QUICK START
+================================================================================
+
+STEP 1: Prepare Code (On Your Computer)
+----------------------------------------
+cd /path/to/your/project
+zip -r yolov8es.zip yolov8es/
+
+
+STEP 2: Upload to Kaggle
+-------------------------
+1. Go to: https://www.kaggle.com/datasets
+2. Click "New Dataset"
+3. Upload yolov8es.zip
+4. Title: "YOLOv8-ES Code"
+5. Click "Create"
+
+
+STEP 3: Create Notebook
+------------------------
+1. Go to: https://www.kaggle.com/code
+2. Click "New Notebook"
+3. Settings → Accelerator → GPU T4 x2
+4. Settings → Internet → ON
+
+
+STEP 4: Add Data
+----------------
+In notebook, click "+ Add Data" and add:
+- Your YOLOv8-ES Code dataset
+- Your training dataset (e.g., RDD2022)
+
+
+STEP 5: Copy Training Code
+---------------------------
+Copy the entire content from:
+  yolov8es/kaggle_notebook.py
+
+Paste into your Kaggle notebook
+
+
+STEP 6: Update Dataset Path
+----------------------------
+Find this line in the notebook:
+  DATASET_PATH = '/kaggle/input/rdd2022'
+
+Change to your actual dataset path:
+  DATASET_PATH = '/kaggle/input/your-dataset-name'
+
+
+STEP 7: Run Training
+--------------------
+Click "Run All" and wait for training to complete
+(Takes ~2-4 hours for 100 epochs)
+
+
+STEP 8: Download Results
+-------------------------
+Go to Output tab (right sidebar) and download:
+- best.pt (your trained model)
+- training_results.zip (all results)
+
+
+================================================================================
+THAT'S IT!
+================================================================================
+
+For detailed guide, see:
+  docs/KAGGLE_TRAINING_GUIDE.md
+
+For troubleshooting, see:
+  KAGGLE_SETUP.md
+
+
+QUICK TIPS:
+-----------
+• Test first with epochs=1
+• Enable cache=True for faster training
+• Reduce batch size if out of memory
+• Save checkpoints every 10 epochs
+• Monitor with !nvidia-smi
+
+
+NEED HELP?
+----------
+Check: docs/KAGGLE_TRAINING_GUIDE.md
